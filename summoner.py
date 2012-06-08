@@ -1,3 +1,30 @@
+import subprocess
+
+# Internal - detects if the user has git
+# 
+# returns True if hub is being used, False otherwise
+def detect_git():
+    retcode = subprocess.call(["/usr/bin/which", "git"]) 
+    if retcode == 0:
+        return True
+    else:
+        return False
+
+# Internal - detects if the user is using github's hub plugin or bare git
+#
+# returns true if hub is being used, false otherwise
+def detect_hub():
+    proc = subprocess.Popen(["git","--version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+
+# Public - interactively initialises the summoner system
+#
+# returns nothing
+def init():
+    print "detecting git..."
+    print "attempting to detect hub..."
+    has_hub = detect_hub()
+
 # Public - prints usage information for summoner
 #
 # Returns nothing
