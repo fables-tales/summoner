@@ -7,7 +7,7 @@
 def usage():
     print "usage is one of"
     print "setup commands"
-    print "    smnr init -> interactive setup"
+    print "    smnr init                             -> interactive setup"
     print "    smnr remote <giturl>                  -> sets your smnr remote"
     print 
     print "template modification"
