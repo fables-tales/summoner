@@ -42,6 +42,8 @@ def usage():
     print "    smnr create <templatename>            -> creates a template interactively"
     print "    smnr create <templatename> <filename> -> creates a template with a file"
     print "    smnr update <templatename>            -> interactively updates a template"
+    print "    smnr delete <templatename>            -> deletes a specified template"
+    print "    smnr list                             -> lists all templates"
     print
     print "getting templates" 
     print "    smnr <templatename>                   -> template into clipboard"
