@@ -14,7 +14,11 @@ def detect_git():
 #
 # returns true if hub is being used, false otherwise
 def detect_hub():
-    proc = subprocess.Popen(["git","--version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    retcode = subprocess.call(["/usr/bin/which", "hub"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if retcode == 0:
+        return True
+    else:
+        return False
 
 
 # Public - interactively initialises the summoner system
