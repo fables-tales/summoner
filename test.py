@@ -24,5 +24,16 @@ class TestShellDetection(unittest.TestCase):
         os.putenv("PATH", TEST_DIR)
         self.assertFalse(summoner.detect_git())
 
+    def test_hub_detect_with_hub(self):
+        f = open(TEST_DIR + "/hub", "w")
+        f.close()
+        os.chmod(TEST_DIR + "/hub", 0777)
+        os.putenv("PATH", TEST_DIR)
+        self.assertTrue(summoner.detect_hub())
+
+    def test_hub_detect_without_hub(self):
+        os.putenv("PATH", TEST_DIR)
+        self.assertFalse(summoner.detect_hub())
+
 if __name__ == '__main__':
     unittest.main()
