@@ -4,7 +4,7 @@ import subprocess
 # 
 # returns True if hub is being used, False otherwise
 def detect_git():
-    retcode = subprocess.call(["/usr/bin/which", "git"]) 
+    retcode = subprocess.call(["/usr/bin/which", "git"], stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
     if retcode == 0:
         return True
     else:
