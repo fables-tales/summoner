@@ -1,4 +1,25 @@
 import subprocess
+import sys
+import os
+
+# Public - creates the summoner repo
+# 
+# has_hub - whether or not the user has the hub command 
+#
+# Returns nothing
+def create_repo(has_hub):
+    pass
+
+# Public - determines the location of the summoner repo
+#
+# returns None if the repo doesn't exist, otherwise the path to it
+def locate_summoner_repo():
+    REPO_PATH = "~/.summoner/repo"
+    if os.path.exists(REPO_PATH):
+        return REPO_PATH
+    else:
+        return None
+    
 
 # Internal - detects if the user has git
 # 
@@ -25,9 +46,34 @@ def detect_hub():
 #
 # returns nothing
 def init():
-    print "detecting git..."
-    print "attempting to detect hub..."
+    sys.stdout.write("detecting git...")
+    sys.stdout.flush()
+    has_git = detect_git()
+    if not has_git:
+        print "ZOMG you don't have git :("
+        print "install it, then use summoner!"
+        sys.exit(1)
+    else:
+        sys.stdout.write("                       [ok]\n")
+
+    sys.stdout.write("detecting hub...")
+    sys.stdout.flush()
     has_hub = detect_hub()
+    if not has_hub:
+        sys.stdout.write("                       [nope]\n")
+    else:
+        sys.stdout.write("                       [ok]\n")
+
+    sys.stdout.write("does the summoner repo already exist?")
+    repo_path = locate_summoner_repo()
+    if repo_path is None:
+        sys.stdout.write("  [no]\n")
+        sys.stdout.write("creating repo...")
+        create_repo(has_hub)
+        sys.stdout.write("                       [ok]\n")
+
+    else:
+        sys.stdout.write("  [yes]\n")
 
 # Public - prints usage information for summoner
 #
