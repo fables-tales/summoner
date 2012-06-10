@@ -25,7 +25,7 @@ def create_repo(has_hub):
 
 # Public - determines the location of the summoner repo
 #
-# returns None if the repo doesn't exist, otherwise the path to it
+# Returns None if the repo doesn't exist, otherwise the path to it
 def locate_summoner_repo():
     if os.path.exists(REPO_PATH):
         return REPO_PATH
@@ -35,7 +35,7 @@ def locate_summoner_repo():
 
 # Internal - detects if the user has git
 # 
-# returns True if hub is being used, False otherwise
+# Returns True if hub is being used, False otherwise
 def detect_git():
     retcode = subprocess.call(["/usr/bin/which", "git"], stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
     if retcode == 0:
@@ -45,7 +45,7 @@ def detect_git():
 
 # Internal - detects if the user is using github's hub plugin or bare git
 #
-# returns true if hub is being used, false otherwise
+# Returns true if hub is being used, false otherwise
 def detect_hub():
     retcode = subprocess.call(["/usr/bin/which", "hub"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if retcode == 0:
@@ -56,7 +56,7 @@ def detect_hub():
 
 # Public - interactively initialises the summoner system
 #
-# returns nothing
+# Returns nothing
 def init():
     sys.stdout.write("detecting git...")
     sys.stdout.flush()
