@@ -101,7 +101,12 @@ def init():
 def template_exists(templatename):
     return os.path.exists(REPO_PATH + "/" + templatename)
 
-def edit(filename):
+# Public - edits a template
+#
+# templatename - the name of the template to edit
+#
+# Returns nothing
+def edit(templatename):
     path = REPO_PATH + "/" + filename
     if not os.path.exists(os.path.dirname(path)):
         subprocess.call(["mkdir","-p",os.path.dirname(path)])
