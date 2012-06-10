@@ -1,10 +1,34 @@
 import subprocess
+import platform
 import sys
 import os
 
 home_dir = os.environ["HOME"]
 SUMMONER_PATH = home_dir + "/.summoner"
 REPO_PATH = home_dir + "/.summoner/summoner_repo"
+
+class Clipboard:
+    def __init__(self):
+        x = platform.system()
+        if x == "Linux":
+            self.platform = "linux"
+        elif x == "Darwin":
+            self.platform = "mac"
+
+    # Public - puts a passed string in the user's clipboard
+    #
+    # string - the string to put in the user's clipboard
+    #
+    # Returns nothing
+    def copy(self, string):
+        if self.platform == "linux":
+            proc = subprocess.Popen(["xclip -selection clipboard"], stdin=subprocess.PIPE, shell=True)
+        else:
+            proc = subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE, shell=True)
+
+        proc.stdin.write(string)
+        proc.communicate()
+        proc.wait()
 
 # Public - creates the summoner repo
 # 
