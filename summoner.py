@@ -12,7 +12,16 @@ REPO_PATH = home_dir + "/.summoner/summoner_repo"
 #
 # Returns nothing
 def create_repo(has_hub):
-    pass
+    os.mkdir(SUMMONER_PATH)
+    os.mkdir(REPO_PATH)
+    subprocess.call(["git","init"], cwd=REPO_PATH)
+    if (has_hub):
+        print
+        wants_hub = raw_input("do you want me to create a repo on github for you? [y/n] ")
+        if wants_hub.find("y") != -1:
+            subprocess.call(["hub","create"], cwd=REPO_PATH)
+
+
 
 # Public - determines the location of the summoner repo
 #
@@ -73,8 +82,9 @@ def init():
         sys.stdout.write("  [no]\n")
         sys.stdout.write("creating repo...")
         create_repo(has_hub)
-        sys.stdout.write("                       [ok]\n")
+        sys.stdout.write("repo created successfully\n")
 
+        sys.stdout.write("you're ready to summon!\n")
     else:
         sys.stdout.write("  [yes]\n")
 
