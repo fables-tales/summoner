@@ -2,6 +2,10 @@ import subprocess
 import sys
 import os
 
+home_dir = os.environ["HOME"]
+SUMMONER_PATH = home_dir + "/.summoner"
+REPO_PATH = home_dir + "/.summoner/summoner_repo"
+
 # Public - creates the summoner repo
 # 
 # has_hub - whether or not the user has the hub command 
@@ -14,7 +18,6 @@ def create_repo(has_hub):
 #
 # returns None if the repo doesn't exist, otherwise the path to it
 def locate_summoner_repo():
-    REPO_PATH = "~/.summoner/repo"
     if os.path.exists(REPO_PATH):
         return REPO_PATH
     else:
