@@ -88,6 +88,30 @@ def init():
     else:
         sys.stdout.write("  [yes]\n")
 
+def template_exists(templatename):
+    return os.path.exists(REPO_PATH + "/" + templatename)
+
+def edit(filename):
+    path = REPO_PATH + "/" + filename
+    if not os.path.exists(os.path.dirname(path)):
+        subprocess.call(["mkdir","-p",os.path.dirname(path)])
+
+    editor = os.environ["EDITOR"]
+    subprocess.call([editor + " " + filename], cwd=REPO_PATH, shell=True)
+
+def commit(templatename):
+    if template_exists(templatename):
+        subprocess.call(["git", "add", templatename], cwd=REPO_PATH)
+        subprocess.call(["git", "commit"], cwd=REPO_PATH)
+
+def create(templatename):
+    if template_exists(templatename):
+        print "This template already exists!"
+        print "Did you want to modify instead?"
+    else:
+        edit(templatename)
+        commit(templatename)
+
 # Public - prints usage information for summoner
 #
 # Returns nothing
