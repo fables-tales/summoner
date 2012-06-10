@@ -157,6 +157,20 @@ def create(templatename):
         edit(templatename)
         commit(templatename)
 
+# Public - copies a template to the users clipboard
+#
+# templatename - the name of the template to be clipboarded
+#
+# Returns nothing
+def clipboard(templatename):
+    if not template_exists(templatename):
+        print "this template does not exist :("
+    else:
+        x = Clipboard()
+        x.copy(open(REPO_PATH + "/" + templatename).read())
+        print "summoned '" + templatename + "' for you :)"
+    
+
 # Public - prints usage information for summoner
 #
 # Returns nothing
