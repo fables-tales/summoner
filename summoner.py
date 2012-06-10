@@ -88,6 +88,16 @@ def init():
     else:
         sys.stdout.write("  [yes]\n")
 
+# Public - checks if a template exists
+#
+# templatename - the name of the template to check for existance
+#
+# Examples
+#
+#   template_exists("html/index.html")
+#   # => False
+#
+# Returns true if the template exists, false otherwise
 def template_exists(templatename):
     return os.path.exists(REPO_PATH + "/" + templatename)
 
@@ -99,11 +109,21 @@ def edit(filename):
     editor = os.environ["EDITOR"]
     subprocess.call([editor + " " + filename], cwd=REPO_PATH, shell=True)
 
+# Internal - commits a template
+# 
+# templatename - the name of the template to edit 
+#
+# Returns nothing
 def commit(templatename):
     if template_exists(templatename):
         subprocess.call(["git", "add", templatename], cwd=REPO_PATH)
         subprocess.call(["git", "commit"], cwd=REPO_PATH)
 
+# Public - creates a template interactively
+#
+# templatename - the name of the template to create 
+#
+# Returns nothing
 def create(templatename):
     if template_exists(templatename):
         print "This template already exists!"
