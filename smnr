@@ -7,5 +7,7 @@ from summoner import *
 if __name__ == "__main__":
     if len(sys.argv) == 1:
         usage()
-    else:
+    elif sys.argv[1] == "init":
         init()
+    elif sys.argv[1] == "create":
+        create(sys.argv[2])
