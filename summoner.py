@@ -21,8 +21,6 @@ def create_repo(has_hub):
         if wants_hub.find("y") != -1:
             subprocess.call(["hub","create"], cwd=REPO_PATH)
 
-
-
 # Public - determines the location of the summoner repo
 #
 # Returns None if the repo doesn't exist, otherwise the path to it
@@ -31,7 +29,6 @@ def locate_summoner_repo():
         return REPO_PATH
     else:
         return None
-    
 
 # Internal - detects if the user has git
 # 
@@ -52,7 +49,6 @@ def detect_hub():
         return True
     else:
         return False
-
 
 # Public - interactively initialises the summoner system
 #
